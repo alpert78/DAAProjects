@@ -1,0 +1,4 @@
+Student's Schedule: 
+John Smith
+Subject: Linear Algebra, Professor: Mike Evans
+Subject: DAA, Professor: Colin Brown
