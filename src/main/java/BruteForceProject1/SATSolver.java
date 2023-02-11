@@ -7,15 +7,13 @@ import java.util.Scanner;
 /**
  * SAT Tester
  * Takes in a CNF file as input and reads it, then makes the appropriate variables(equation, amount of vars/clauses, etc.)
- * Makes an ArrayList of all possible combinations of true/false values in binary form
+ * Checks all possible combinations and finds the first one that makes the equation SAT, or it is UNSAT
  * @author Nicholas Alpert
- * @version v5 2/6/2023
+ * @version v7 2/11/2023
  */
 public class SATSolver {
-
     public static int numVariables; //Stores the number of variables in the equation
     public static int numClauses; //Stores the number of clauses in the equation
-
     public static ArrayList<ArrayList<Integer>> equation = new ArrayList<>(); // Stores ArrayLists that store the clauses
 
     /**
@@ -46,8 +44,11 @@ public class SATSolver {
                         equation.add(temp);
                         temp = new ArrayList<Integer>();
                     } else if (current.length == 1 && Integer.valueOf(current[0]) == 0) { // If line is only 0
-                        equation.add(temp);
-                        temp = new ArrayList<Integer>();
+                        if(!temp.isEmpty()){ // Makes sure it only adds if it isn't an empty line
+                            equation.add(temp);
+                            temp = new ArrayList<Integer>();
+                        }
+                        temp = new ArrayList<Integer>(); // Doesn't add anything if the line is only 0
                     } else{
                         for(int i = 0; i < current.length; i++){ // If equation is split across different lines
                             temp.add(Integer.valueOf(current[i]));
