@@ -1,8 +1,9 @@
 /**
  * SudokuToSAT.java
  * Turns an input sudoku txt file into a corresponding cnf file. The file is than passed to SAT4J to be solved
+ *
  * @author Nicholas Alpert
- * @version 3/28/2023
+ * @version 4/04/2023
  */
 package sudokusolver;
 
@@ -105,7 +106,7 @@ public class SudokuToSAT {
                     }
                 }
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new FileNotFoundException();
         }
     }
@@ -130,7 +131,7 @@ public class SudokuToSAT {
                 generateAtMost(array, false);
                 array = new ArrayList<>();
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new FileNotFoundException();
         }
     }
@@ -155,7 +156,7 @@ public class SudokuToSAT {
                     numClause++;
                 }
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new FileNotFoundException();
         }
     }
@@ -179,7 +180,7 @@ public class SudokuToSAT {
             }
             count++;
             cellRestrictions(temp, count);
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new FileNotFoundException();
         }
     }
@@ -197,7 +198,7 @@ public class SudokuToSAT {
                     array.add(i);
                     for (int j = 1; j < sizeMini; j++) {
                         bw.write((i + j) + " ");
-                        array.add(i+j);
+                        array.add(i + j);
                     }
                     for (int l = 0; l < sizeMini - 1; l++) {
                         for (int k = 0; k < sizeMini; k++) {
@@ -212,7 +213,7 @@ public class SudokuToSAT {
                     array = new ArrayList<>();
                 }
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new FileNotFoundException();
         }
     }
@@ -245,7 +246,7 @@ public class SudokuToSAT {
                 }
             }
             bufferedWriter.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new FileNotFoundException();
         }
     }
@@ -261,18 +262,17 @@ public class SudokuToSAT {
             for (int i = 0; i < array.size(); i++) {
                 for (int j = 1; j < array.size() - i; j++) {
                     bw.write(-array.get(i) + " " + -array.get(i + j) + " 0 ");
-                    if(!lastLine){
-                       bw.write("\n");
-                    }
-                    else{
-                        if(!(i == size-1)){
+                    if (!lastLine) {
+                        bw.write("\n");
+                    } else {
+                        if (!(i == size - 1)) {
                             bw.write("\n");
                         }
                     }
                     numClause++;
                 }
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new FileNotFoundException();
         }
     }
